@@ -13,8 +13,7 @@ export class ReviewsService {
   private ReviewRepository:Repository <Review>){}
 
  create(createReviewDto: CreateReviewDto) {
-    //Crear la instancia del objeto a guardar
-    const nuevoReview = this.ReviewRepository.create(createReviewDto);
+    const nuevoReview = this.ReviewRepository.create (createReviewDto);
     return this.ReviewRepository.save(nuevoReview)
   }
 
@@ -28,11 +27,8 @@ export class ReviewsService {
   }
 
   async update(id: number, UpdateReviewDto: UpdateReviewDto) {
-    //Selecionar el bootcamp cuyo id sea el del paramentro id
      const updReview =  await this.ReviewRepository.findOneBy({id})
-     //fusionar los cambios por el bootcamp hallado
      await this.ReviewRepository.merge(updReview, UpdateReviewDto)
-     //Grabar cambios en base de datos
      await this.ReviewRepository.save(updReview)
      return updReview 
    }
